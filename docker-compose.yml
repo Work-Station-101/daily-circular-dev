@@ -1,0 +1,13 @@
+version: '3.7'
+
+services: 
+  dc-client:
+    container_name: dc-client-container
+    build: 
+      context: ./daily-circular-client
+      dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - 3000:3000
+    volumes: 
+      - './daily-circular-client:/app'
