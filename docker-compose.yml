@@ -11,3 +11,4 @@ services:
       - 3000:3000
     volumes: 
       - './daily-circular-client:/app'
+      - '/app/node_modules'
