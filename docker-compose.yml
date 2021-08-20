@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services: 
   dc-client:
@@ -6,7 +6,7 @@ services:
     build: 
       context: ./daily-circular-client
       dockerfile: Dockerfile
-    restart: always
+    restart: on-failure
     ports: 
       - 3000:3000
     volumes: 
