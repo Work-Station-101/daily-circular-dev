@@ -4,6 +4,8 @@ cd ..
 
 cp daily-circular-dev/docker-compose.yml .
 
+docker-compose down
+
 echo "------------------------------"
 echo "cloning project repos ...."
 echo "------------------------------"
@@ -13,6 +15,13 @@ clone_project() {
   
   if [ -d "$1" ]; then
     echo -e "$1 already exits! cloning aborted!!!\n\n"
+    cd $1
+    git add .
+    git stash
+    git checkout main
+    git fetch dc main
+    git reset --hard dc/main
+    cd ..
     return -1
   fi
   
