@@ -34,7 +34,8 @@ clone_project() {
   return 1
 }
 
-projects[0]="daily-circular-client"
+projects[0]="daily-circular-server"
+projects[1]="daily-circular-client"
 
 for project in $projects; do
   clone_project $project

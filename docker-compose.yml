@@ -6,9 +6,23 @@ services:
     build: 
       context: ./daily-circular-client
       dockerfile: Dockerfile
+    depends_on:
+      - dc-server
     restart: on-failure
     ports: 
       - 3000:3000
     volumes: 
       - './daily-circular-client:/app'
+      - '/app/node_modules'
+
+  dc-server:
+    container_name: dc-server-container
+    build:
+      context: ./daily-circular-server
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 5000:5000
+    volumes: 
+      - './daily-circular-server:/app'
       - '/app/node_modules'
