@@ -2,27 +2,41 @@ version: '3.9'
 
 services: 
   dc-client:
-    container_name: dc-client-container
+    container_name: dc-client
     build: 
       context: ./daily-circular-client
       dockerfile: Dockerfile
     depends_on:
+      - dc-mongodb
       - dc-server
     restart: on-failure
     ports: 
       - 3000:3000
-    volumes: 
-      - './daily-circular-client:/app'
-      - '/app/node_modules'
+    volumes:
+      - ./daily-circular-client:/app
+      - /app/node_modules
 
   dc-server:
-    container_name: dc-server-container
+    container_name: dc-server
     build:
       context: ./daily-circular-server
       dockerfile: Dockerfile
+    depends_on:
+      - dc-mongodb
     restart: on-failure
     ports:
       - 5000:5000
-    volumes: 
-      - './daily-circular-server:/app'
-      - '/app/node_modules'
+    volumes:
+      - ./daily-circular-server:/app
+      - /app/node_modules
+
+  dc-mongodb:
+    container_name: dc-mongodb
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    ports:
+      - 27017:27017
+    volumes:
+      - ./dc-mongodb-data:/data/db
