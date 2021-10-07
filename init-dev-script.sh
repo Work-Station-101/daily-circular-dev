@@ -6,6 +6,8 @@ cp daily-circular-dev/docker-compose.yml .
 
 docker-compose down
 
+mkdir dc-mongodb-data
+
 echo "------------------------------"
 echo "cloning project repos ...."
 echo "------------------------------"
