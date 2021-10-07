@@ -33,9 +33,6 @@ services:
   dc-mongodb:
     container_name: dc-mongodb
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 1234
     ports:
       - 27017:27017
     volumes:
